@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import styles  from '../../styles/Hero.module.css';
+import styles from '../../styles/Hero.module.css';
 export const Hero = () => {
   return (
     <section id="hero">
@@ -16,14 +16,13 @@ export const Hero = () => {
             <a href="#" className="p-3 px-6 pt-2 text-white bg-brightRed rounded-full hover:bg-brightRedLight"> Latest Issue </a>
           </div>
         </div>
-        <a href="#" className='w-full h-full sm:-pt-50 md:w-3/5 md:h-3/5' >
-        <svg id={styles.heroSVG} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g id="MainLayer">
-            <path id={styles.Green} d="M27.5819 52.154C24.8505 49.7792 25.4689 45.3792 28.749 43.8493L58.8138 29.827C62.4085 28.1504 66.4307 31.1264 65.8786 35.0542L60.8489 70.8427C60.2969 74.7705 55.6103 76.5225 52.617 73.9201L27.5819 52.154Z"/>
-            <path id={styles.Liberal} d="M70.5968 44.9451C73.7924 46.6445 74.1796 51.0709 71.3277 53.2995L45.1878 73.7255C42.0624 76.1677 37.4739 74.1728 37.1282 70.2215L33.9783 34.2189C33.6326 30.2675 37.805 27.5061 41.307 29.3685L70.5968 44.9451Z"/>
-            <path id={styles.Labor} d="M45.3069 29.4558C47.2783 26.4204 51.7217 26.4204 53.6931 29.4557L71.7632 57.2765C73.9238 60.6028 71.5365 65 67.5701 65H31.4299C27.4635 65 25.0762 60.6028 27.2368 57.2765L45.3069 29.4558Z"/>
-          </g>
-        </svg>
+        <a href="#" className='sm:-pt-50 md:w-3/5 md:h-3/5' >
+          <svg className="h-full w-full" id={styles.heroSVG}viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path id={styles.Liberal} d="M4.68049 48.4997C1.74975 46.168 2.46465 41.513 5.98419 40.0108L74.8142 10.6335C78.4216 9.09383 82.2509 12.0068 81.6618 15.8424L70.1468 90.8207C69.5577 94.6563 64.9993 96.4905 61.9955 94.1006L4.68049 48.4997Z"/>
+              <path id={styles.Green} d="M94.5139 42.1263C97.945 43.7961 98.3938 48.4908 95.3317 50.6804L35.4882 93.4732C32.3547 95.7139 27.9153 93.6602 27.5461 89.7993L20.3351 14.3734C19.966 10.5125 23.9483 7.78455 27.4593 9.49325L94.5139 42.1263Z"/>
+              <path id={styles.Labor} d="M45.9226 8.11479C47.9157 5.30678 52.0843 5.30678 54.0773 8.1148L95.1065 65.9209C97.4564 69.2317 95.0891 73.8149 91.0291 73.8149H8.97082C4.91081 73.8149 2.54355 69.2317 4.89348 65.9209L45.9226 8.11479Z"/>
+          </svg>
+
         </a>
 
 
