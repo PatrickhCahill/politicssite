@@ -44,5 +44,5 @@ an implement that functionality later.
 3. Heropage svg made interactive:
 	-Switched to [https://www.figma.com/](figma) for design (better svg code-works in jsx) and easier to target id.
 	-Made with clickable <a> tags
-	-Added animation using css, from [https://www.youtube.com/watch?v=UTHgr6NLeEw&ab_channel=Fireship]
+	-Added animation using css, from [https://www.youtube.com/watch?v=UTHgr6NLeEw&ab_channel=Fireship](here).
 	-Using css module system to avoid clashes.
