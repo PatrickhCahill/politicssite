@@ -26,3 +26,14 @@ an implement that functionality later.
 2. Create readme.md
 3. Create documentation for reusability
 4. Create a blog that documents the process of each day
+
+## Diary Of Work
+
+### 27/06/2022
+
+#### Plan for Today:
+1. Make interactivity of hero page icon:
+    -Should spin on click and then redirect to first-issue
+2. Establish plan for component-based article system.
+    - Get basic frame system started
+3. Restyle homepage
