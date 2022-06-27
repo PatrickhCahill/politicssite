@@ -32,8 +32,11 @@ an implement that functionality later.
 ### 27/06/2022
 
 #### Plan for Today:
-1. Make interactivity of hero page icon:
+1. Make interactivity of hero page icon.
     -Should spin on click and then redirect to first-issue
 2. Establish plan for component-based article system.
     - Get basic frame system started
 3. Restyle homepage
+
+#### Stuff Done Today:
+1. Made <Navbar /> work on mobile device.
