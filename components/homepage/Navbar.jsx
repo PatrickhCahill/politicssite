@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import styles  from '../../styles/Navbar.module.css';
 import Image from 'next/image';
 export const Navbar = () => {
     const [isHamburgerOpen, setIsHamburgerOpen] = React.useState(false);
@@ -21,10 +22,10 @@ export const Navbar = () => {
                 </div>
                 <a href="#" className="hidden  p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight md:block">Latest Issue</a>
 
-                <button id='menu-btn' className={'block hamburger md:hidden focus:outline-none' + (isHamburgerOpen ? ' open ' : '')} onClick={ handleClick }>
-                    <span className=' hamburger-top'></span>
-                    <span className=' hamburger-middle'></span>
-                    <span className=' hamburger-bottom'></span>
+                <button id='menu-btn' className={styles.hamburger + ' block md:hidden focus:outline-none' + (isHamburgerOpen ? ` ${styles.open} ` : '') } onClick={ handleClick }>
+                    <span className={styles.hamburgerTop}></span>
+                    <span className={styles.hamburgerMiddle}></span>
+                    <span className={styles.hamburgerBottom}></span>
                 </button>
             </div>
 

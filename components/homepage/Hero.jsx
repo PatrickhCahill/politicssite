@@ -17,7 +17,7 @@ export const Hero = () => {
           </div>
 
           <div>
-            <Image src='/homepage.svg' alt='homepageLogo' width={300} height={300} />
+            <Image src='/homepageActual.svg' alt='homepageLogo' width={300} height={300} />
           </div>
         </div>
       </section>

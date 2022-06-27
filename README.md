@@ -33,7 +33,7 @@ an implement that functionality later.
 
 #### Plan for Today:
 1. Make interactivity of hero page icon.
-    -Should spin on click and then redirect to first-issue
+    - Should spin on click and then redirect to first-issue
 2. Establish plan for component-based article system.
     - Get basic frame system started
 3. Restyle homepage
