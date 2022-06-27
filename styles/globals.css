@@ -1,16 +1,48 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.hamburger{
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    transition: all 0.25s;
+    position: relative;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.hamburger-top, .hamburger-middle, .hamburger-bottom{
+    top:0;
+    left:0;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    border-radius: 3px;
+    position: absolute;
+    transition: all 0.25s;
+    background: #000;
 }
 
-* {
-  box-sizing: border-box;
+.hamburger-middle {
+    transform: translateY(7px);
+}
+
+.hamburger-bottom {
+    transform: translateY(14px);
+}
+
+.open {
+    transform: translateY(0px);
+    transform: rotate(90deg);
+}
+.open .hamburger-top {
+    transform: rotate(45deg) translateY(6px) translate(6px);
+}
+
+.open .hamburger-middle {
+    display: none;
+}
+
+.open .hamburger-bottom  {
+    transform: rotate(-45deg) translateY(6px) translate(-6px);
 }
