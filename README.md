@@ -42,7 +42,7 @@ an implement that functionality later.
 1. Made <Navbar /> work on mobile device.
 2. Moved <Navbar /> related css to its own folder.
 3. Heropage svg made interactive:
-	-Switched to [https://www.figma.com/](figma) for design (better svg code-works in jsx) and easier to target id.
-	-Made with clickable <a> tags
-	-Added animation using css, from [https://www.youtube.com/watch?v=UTHgr6NLeEw&ab_channel=Fireship](here).
-	-Using css module system to avoid clashes.
+	- Switched to [figma](https://www.figma.com/) for design (better svg code-works in jsx) and easier to target id.
+	- Made with clickable <a> tags.
+	- Added animation using css, from [here](https://www.youtube.com/watch?v=UTHgr6NLeEw&ab_channel=Fireship). 
+	- Using css module system to avoid clashes.
