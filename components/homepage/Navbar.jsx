@@ -20,7 +20,7 @@ export const Navbar = () => {
                     <a href="#" className="text-gray-500 hover:text-gray-700">About Us</a>
                     <a href="#" className="text-gray-500 hover:text-gray-700">Support</a>
                 </div>
-                <a href="#" className="hidden  p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight md:block">Latest Issue</a>
+                <a href="#" className="hidden  p-3 px-6 pt-2 text-white bg-politicalRed rounded-full baseline hover:bg-politicalOrange md:block">Latest Issue</a>
 
                 <button id='menu-btn' className={styles.hamburger + ' block md:hidden focus:outline-none' + (isHamburgerOpen ? ` ${styles.open} ` : '') } onClick={ handleClick }>
                     <span className={styles.hamburgerTop}></span>

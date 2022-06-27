@@ -15,14 +15,12 @@ module.exports = {
     extend: 
     {
       colors: {
-        brightRed: 'hsl(12, 88%, 59%)',
-        brightRedLight: 'hsl(12, 88%, 69%)',
-        brightRedSupLight: 'hsl(12, 88%, 95%)',
-        darkBlue: 'hsl(228, 39%, 23%)',
-        darkGrayishBlue: 'hsl(227, 12%, 61%)',
-        veryDarkBlue: 'hsl(233, 12%, 13%)',
-        veryPaleRed: 'hsl(13, 100%, 96%)',
-        veryLightGray: 'hsl(0, 0%, 98%)',
+        politicalRed:    'rgba(173, 0, 37, 100%)',
+        politicalOrange: 'rgba(255, 125, 74, 100%)',
+        politicalYellow: 'rgba(232, 154, 38, 100%)',
+        politicalTeal:   'rgba(0, 108, 125, 100%)',
+        politicalPurple: 'rgba(111, 0, 68, 100%)',
+        politicalBgTeal: 'rgba(199, 221, 225, 100%)',
       },
     },
   },
