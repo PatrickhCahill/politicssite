@@ -1,0 +1,31 @@
+#heroSVG {
+    cursor: pointer;
+}
+#Liberal {
+    fill: rgba(0, 26, 168, 0.5);
+    transition: all 1s ease;
+    transform: rotate(0deg);
+    transform-origin: center center;
+}
+
+#heroSVG:hover #Liberal{
+    transform: rotate(180deg);
+}
+#Green {
+    fill:rgba(40, 168, 0, 0.5);
+    transition: all 1.3s ease;
+    transform: rotate(0deg);
+    transform-origin: center center;
+}
+#heroSVG:hover #Green{
+    transform: rotate(180deg);
+}
+#Labor {
+    fill:rgba(199, 0, 0, 0.5);
+    transition: all 1.5s ease;
+    transform: rotate(0deg);
+    transform-origin: center center;
+}
+#heroSVG:hover #Labor{
+    transform: rotate(180deg);
+}
