@@ -17,7 +17,7 @@ export default function Home() {
         if(position >= (snapFrameCount-1) && prev < position){ //Checks that the scroll position on the final snapFrame. Next want to check
             console.log("On final snapFrame")
             setSnap(false);
-        } else if(position < (snapFrameCount-0.75) && prev > position){ //Checks that the scroll position on the final snapFrame. Next want to check
+        } else if(position < (snapFrameCount-0.9) && prev > position){ //Checks that the scroll position on the final snapFrame. Next want to check
             console.log("On final snapFrame")
             setSnap(true);
         }
@@ -43,12 +43,11 @@ export default function Home() {
                     <section className="bg-politicalYellow h-screen flex items-center justify-center snap-start"><h1 className=' font-bold'>Second Page</h1></section>
                     <section className="bg-politicalTeal h-screen flex items-center justify-center snap-start"><h1 className=' font-bold'>Third Page</h1></section>
                     <section className="bg-politicalOrange h-screen flex items-center justify-center snap-start"><h1 className=' font-bold'>Fourth Page</h1></section>
-                    <div className="">
-                        <section className="bg-politicalRed h-screen flex items-center justify-center"><h1 className=' font-bold'>First Page</h1></section>
-                        <section className="bg-politicalYellow h-screen flex items-center justify-center "><h1 className=' font-bold'>Second Page</h1></section>
-                        <section className="bg-politicalTeal h-screen flex items-center justify-center "><h1 className=' font-bold'>Third Page</h1></section>
-                        <section className="bg-politicalOrange h-screen flex items-center justify-center "><h1 className=' font-bold'>Fourth Page</h1></section>
-                    </div>
+                    <section className="bg-politicalRed h-screen flex items-center justify-center"><h1 className=' font-bold'>First Page</h1></section>
+                    <section className="bg-politicalYellow h-screen flex items-center justify-center "><h1 className=' font-bold'>Second Page</h1></section>
+                    <section className="bg-politicalTeal h-screen flex items-center justify-center "><h1 className=' font-bold'>Third Page</h1></section>
+                    <section className="bg-politicalOrange h-screen flex items-center justify-center "><h1 className=' font-bold'>Fourth Page</h1></section>
+
                 </div>
 
             </div>

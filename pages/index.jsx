@@ -1,11 +1,11 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Navbar } from '../components/homepage/Navbar';
-import { Hero } from '../components/homepage/Hero';
-import { Issues } from '../components/homepage/Issues';
-import { Authors } from '../components/homepage/Authors';
-import { Footer } from '../components/homepage/Footer';
-import { CallToAction } from '../components/homepage/CallToAction';
+import { Navbar } from '../components/Navbar';
+import { Hero } from '../components/Hero';
+import { Issues } from '../components/Issues';
+import { Authors } from '../components/Authors';
+import { Footer } from '../components/Footer';
+import { CallToAction } from '../components/CallToAction';
 
 export default function Home() {
   return (

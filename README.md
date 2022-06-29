@@ -104,3 +104,6 @@ Code functionality needs to include:
 	- Got this method implemented. Needs to smooth the transition for when user goes back into snap
 	- Works nicely when I know the code so the `snap-y` and `snap-align-start` should be handled by me as contained within the frame.
 	- Some of this needs to be made more react native. Currently using `.getElementById('main')` in order to target the whole of the article. Should use `useRef()` instead. Minor fix - will work out later.
+3. Implemented the beginning of the `<Article>` and `<Frame>` building. Current functionality essentially checks that all the children of an `<Article>`  are `<Frame>`'s and if not, then attempts to convert them with a warning. The current functionality of a frame is essentially a section wrapper that is forced to have `className='h-screen' snap`, with the snap property being "true", "false" or "continue." Attempted to implement snapping in the article system and got the snapping to work, but not the unsnapping when it changes section:
+	- Need to fix the current bugs and then,
+	- Need to work out how I handle multiple snap sections 
