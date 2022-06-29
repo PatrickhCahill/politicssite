@@ -51,7 +51,7 @@ an implement that functionality later.
 Frames should obey a color scheme while, most cards should be mild.
 
 ##### Outline of system to build it:
-- Would like to initialize a frame like this:
+- Would like to initialize an article like this:
 
 ```
 <Article colourscheme=colourscheme> 
@@ -73,8 +73,8 @@ Code functionality needs to include:
 
 
 #### Stuff Done Today:
-1. Made <Navbar /> work on mobile device.
-2. Moved <Navbar /> related css to its own folder.
+1. Made Navbar work on mobile device.
+2. Moved Navbar related css to its own folder.
 3. Heropage svg made interactive:
 	- Switched to [figma](https://www.figma.com/) for design (better svg code-works in jsx) and easier to target id.
 	- Made with clickable <a> tags.

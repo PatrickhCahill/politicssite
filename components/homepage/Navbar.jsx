@@ -9,7 +9,8 @@ export const Navbar = () => {
         setIsHamburgerOpen(current=>!current);
     }
     return (
-        <nav className="relative container mx-auto p-6">
+        <div className=" shadow-md">
+                    <nav className="relative container mx-auto p-6 ">
             <div className="flex items-center justify-between">
                 <div className="pt-2">
                     <Image src='/logo.svg' alt="logo" width={200} height={50} />
@@ -20,7 +21,7 @@ export const Navbar = () => {
                     <a href="#" className="text-gray-500 hover:text-gray-700">About Us</a>
                     <a href="#" className="text-gray-500 hover:text-gray-700">Support</a>
                 </div>
-                <a href="#" className="hidden  p-3 px-6 pt-2 text-white bg-politicalRed rounded-full baseline hover:bg-politicalOrange md:block">Latest Issue</a>
+                <a href="#" className="hidden  p-3 px-6 pt-2 text-white bg-politicalRed baseline hover:bg-politicalOrange md:block">Latest Issue</a>
 
                 <button id='menu-btn' className={styles.hamburger + ' block md:hidden focus:outline-none' + (isHamburgerOpen ? ` ${styles.open} ` : '') } onClick={ handleClick }>
                     <span className={styles.hamburgerTop}></span>
@@ -38,5 +39,7 @@ export const Navbar = () => {
                 </div>
             </div>
         </nav>
+        </div>
+
     )
 }

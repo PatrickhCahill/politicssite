@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from '../../styles/Hero.module.css';
-export const Hero = () => {
+export const Hero = ({ latestIssue }) => {
   return (
     <section id="hero">
       <div className="containert flex flex-col-reverse md:flex-row items-center px-6 mx-auto mt-10 space-y-0 md:space-y-0 lg:max-w-5xl">
@@ -13,7 +13,7 @@ export const Hero = () => {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </p>
           <div className="flex justify-center md:justify-start">
-            <a href="#" className="p-3 px-6 pt-2 text-white bg-brightRed rounded-full hover:bg-brightRedLight"> Latest Issue </a>
+            <a href={`issues/${latestIssue}`} className="p-3 px-6 pt-2 text-white bg-politicalRed hover:bg-politicalOrange"> Latest Issue </a>
           </div>
         </div>
         <a href="https:/facebook.com" className='sm:-pt-50 md:w-3/5 md:h-3/5' >
