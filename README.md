@@ -80,3 +80,27 @@ Code functionality needs to include:
 	- Made with clickable <a> tags.
 	- Added animation using css, from [here](https://www.youtube.com/watch?v=UTHgr6NLeEw&ab_channel=Fireship). 
 	- Using css module system to avoid clashes.
+
+### 28/06/2022
+
+#### Plan for Today:
+1. Feeling Lazy: Work on Figma plan
+
+#### Stuff Done Today:
+1. Created a figma document that outlines plans frame interactions.
+2. Emerged that I was really interested in two things:
+	- Automatically laying out the cards within a frame
+	- Making transitions between frames easy
+	- Handling colourscheming with code, but allowing for an override like parallax.
+
+### 29/06/2022
+
+#### Plan for Today:
+1. Make headway on React component system of Frames and Cards
+2. Implement some basic properties of Frames like snap alignment
+#### Stuff Done Today:
+1. Got snap alignment on `<Section></Section>` elements working.
+2. Turned out to be rather hard to switch. i.e would be cool to have a section of frames where one can snap between the frames and then it switches to smooth scrolling
+	- Got this method implemented. Needs to smooth the transition for when user goes back into snap
+	- Works nicely when I know the code so the `snap-y` and `snap-align-start` should be handled by me as contained within the frame.
+	- Some of this needs to be made more react native. Currently using `.getElementById('main')` in order to target the whole of the article. Should use `useRef()` instead. Minor fix - will work out later.
