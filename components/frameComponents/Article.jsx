@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Frame } from "./Frame";
 export const Article = ({ title, children }) => {
     // Handling <Head> Stuff
@@ -7,45 +7,35 @@ export const Article = ({ title, children }) => {
         console.warn("No Title Provided => Please Provide One using <Article title='Title'>...<Article/>");
         title = "Article";
     }
-    // Initializing:
-    let wrapperClassNames = "overflow-y-scroll h-screen";
 
 
-    // Handling <Frame> Stuff
-    let frames = ParseFrames(children);
-    const [doesSnap, snaps] = GetSnaps(frames);
-    if (doesSnap) {
-        frames = implementSnaps(frames, snaps);
-        wrapperClassNames += " snap-y snap-mandatory";
-    }
-    const [scrollPosition, setScrollPosition] = useState(0); //Hook will track the scrollPosition so that we can toggle scrollsnapping between the frames.
-    const [snap, setSnap] = useState(true);
-
-    const snapFrameCount = 4; //This is the count of the number of snapFrames (needs to be dynamic)
-    const handleScroll = () => {
-        const main = document.getElementById('wrapper'); //Find the more react way of doing this.
-
-        console.log("Scrolling Detected");
-        const prev = scrollPosition;
-        const position = main.scrollTop/window.innerHeight; //Gives value in units of viewport height.
-        
-        setScrollPosition(position);
-        if(position >= (snapFrameCount-1) && prev < position){ //Checks that the scroll position on the final snapFrame. Next want to check
-            console.log("On final snapFrame")
-            setSnap(false);
-        } else if(position < (snapFrameCount-0.9) && prev > position){ //Checks that the scroll position on the final snapFrame. Next want to check
-            console.log("On final snapFrame")
-            setSnap(true);
-        }
-    };
-
+    // Handling the frames. THESE FUNCTIONS SHOULD BE STATIC
+    const frames = ParseFrames(children);
+    const {newFrames, snapList} = handleFrames(frames);
+    
+    // HANDLING THE DYNAMICS
+    let wrapper = useRef(null);
+    const [location, setLocation] = useState(0); //Page location as a function of the frames. O is the first frame
     useEffect(() => {
-        const main = document.getElementById('wrapper'); //Find the more react way of doing this.
-        main.addEventListener("scroll", handleScroll);
-        return () => {
-            main.removeEventListener("scroll", handleScroll);
+        
+        const theWrapper = wrapper.current;
+        
+        const onScroll = () => {
+            const updatedLocation = (theWrapper.scrollTop / window.innerHeight);
+            setTimeout(() => {
+            setLocation(updatedLocation);
+            console.log(updatedLocation);
+            }, 1000);
         };
-    }, [scrollPosition]);
+            theWrapper.addEventListener("scroll", onScroll);
+
+       
+        return () => {
+            theWrapper.removeEventListener("scroll", onScroll);
+        }
+    }, [wrapper]);
+    
+
 
 
     // Handling Return() Stuff
@@ -55,59 +45,15 @@ export const Article = ({ title, children }) => {
                 <title>{title}</title>
             </Head>
             <div className="overflow-hidden relative">
-                <div id="wrapper" className={wrapperClassNames}>
-                    <AddStyle className='text-9xl'>{frames}</AddStyle>
+                <div id="wrapper" ref={wrapper} className={"overflow-y-scroll h-screen " + (true ? " snap-y snap-mandatory " : " ")}>
+                    <AddStyle className='text-9xl'>{newFrames}</AddStyle>
                 </div>
             </div>
 
         </>
     );
 }
-
-// This function will return the component.props.snap property of each of the frame components
-const GetSnaps = (frames) => {
-    let doesSnap = false;
-    const snapsProperties = frames.map(frame => frame.props.snap);
-    let snaps = [];
-    for (let i = 0; i < snapsProperties.length; i++) {
-        if (snapsProperties[i] === true) {
-            snaps.push(true);
-        }
-        else if (snapsProperties[i] === false) {
-            snaps.push(false);
-        }
-        else if (snapsProperties[i] === "continue") {
-            if (snaps[i - 1] === true) {
-                snaps.push(true);
-            } else { snaps.push(false) };
-        }
-    }
-    for (let i = 1; i < snaps.length; i++) {
-        if (snaps[i - 1] === true && snaps[i] === true) {
-            doesSnap = true;
-            break;
-        }
-    }
-
-    return [doesSnap, snaps];
-}
-// This function will implement the snap classes
-const implementSnaps = (frames, snaps) => {
-    const snapClass = "snap-start";
-    let newFrames = [];
-    for (let i = 0; i < frames.length; i++) {
-        if (snaps[i] === true) {
-
-            newFrames.push(<Frame snap={true} className={`${frames[i].props.className} ${snapClass}`}>{frames[i].props.children}</Frame>);
-        } else {
-            newFrames.push(<Frame snap={false} className={frames[i].props.className}>{frames[i].props.children}</Frame>);
-        }
-    }
-    return newFrames;
-}
-
-
-
+// // GENERAL TOOLS
 
 // This function is used to apply a class to all of the children element.
 const AddStyle = ({ className, children }) => {
@@ -121,6 +67,8 @@ const AddStyle = ({ className, children }) => {
     return <StyledChildren />;
 };
 
+
+// // INITIALISING TOOLS
 // This function is used to ensure all of the elements that are displayed are individual frames
 const ParseFrames = (content) => {
     if (!Array.isArray(content)) {
@@ -151,3 +99,58 @@ const ParseFrames = (content) => {
     );
     return Frames.filter(element => element !== undefined);
 }
+
+// This function is does all of the initial processing of the frames.
+const handleFrames = (frames) => {
+    const frameProps = frames.map(frame => frame.props);
+    
+    // Handling the snapping effect of the frames
+    const snapList = getSnapList(frameProps);
+    const newFrames = handleSnapList(frames, snapList);
+
+    return {newFrames: newFrames, snapList: snapList};
+};
+
+// SNAP PROPERTY
+// This function is used to get the snap properties of each frame
+const getSnapList = (frameProps) => {
+    const snapValues = frameProps.map(frame => frame.snap);
+    // Checks that there is at least one instance of "startSnap" followed by "continue"
+
+    let isSnapping = false;
+    const snapList = [];
+    for (let i = 0; i < snapValues.length ; i++) {
+        if (snapValues[i] === "startSnap") {
+            isSnapping = true;
+            snapList.push(true);
+        }
+        else if (snapValues[i] === "continue" && isSnapping) {
+            snapList.push(true);
+        }
+        else if (snapValues[i] === "continue" && !isSnapping) {
+            snapList.push(false);
+        }
+        else if (snapValues[i] === "lastSnap") {
+            isSnapping = false;
+            snapList.push(true);
+        }
+        else {
+            console.warn(`${snapValues[i]} is not a valid snap value. Please use "startSnap" or "continue".`);
+        }
+    }
+    return snapList;
+};
+
+// This function is used to apply the snap-start className to each frame
+const handleSnapList = (frames, snapList) => {
+    const newFrames = frames.map((frame, index) => {
+        if (snapList[index]) {
+                return <AddStyle className='snap-start' key={index}>{frame}</AddStyle>;
+            } else {
+                return frame
+            }
+        }
+    );
+    return newFrames;
+};
+
