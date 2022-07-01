@@ -107,3 +107,17 @@ Code functionality needs to include:
 3. Implemented the beginning of the `<Article>` and `<Frame>` building. Current functionality essentially checks that all the children of an `<Article>`  are `<Frame>`'s and if not, then attempts to convert them with a warning. The current functionality of a frame is essentially a section wrapper that is forced to have `className='h-screen' snap`, with the snap property being "true", "false" or "continue." Attempted to implement snapping in the article system and got the snapping to work, but not the unsnapping when it changes section:
 	- Need to fix the current bugs and then,
 	- Need to work out how I handle multiple snap sections 
+
+### 30/06/2022
+
+#### Plan for Today:
+1. Fix Snap Alignment
+#### Stuff Done Today:
+1. Got snap alignment to work on down scroll. But not on upscroll.
+
+### 01/07/2022
+
+#### Plan for Today:
+1. Fix upScrolling for snapping property on the frames
+#### Stuff Done Today:
+1. Snap scrolling fixed by creating snapRegions which are calculated at buildtime. Key lesson was to use less state hooks. No need to store the location value since it's only used to calculate the isSnapping state.

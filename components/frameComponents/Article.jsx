@@ -11,30 +11,33 @@ export const Article = ({ title, children }) => {
 
     // Handling the frames. THESE FUNCTIONS SHOULD BE STATIC
     const frames = ParseFrames(children);
-    const {newFrames, snapList} = handleFrames(frames);
-    
+    const { newFrames, snapRegions } = handleFrames(frames);
+
     // HANDLING THE DYNAMICS
     let wrapper = useRef(null);
-    const [location, setLocation] = useState(0); //Page location as a function of the frames. O is the first frame
-    useEffect(() => {
-        
-        const theWrapper = wrapper.current;
-        
-        const onScroll = () => {
-            const updatedLocation = (theWrapper.scrollTop / window.innerHeight);
-            setTimeout(() => {
-            setLocation(updatedLocation);
-            console.log(updatedLocation);
-            }, 1000);
-        };
-            theWrapper.addEventListener("scroll", onScroll);
+    const [isSnapping, setIsSnapping] = useState(true);
 
-       
+    useEffect(() => {
+        const theWrapper = wrapper.current;
+        const onScroll = () => {
+            const location = theWrapper.scrollTop / window.innerHeight;
+            console.log(location);
+            for(let region = 0; region < snapRegions.length; region++) {
+                if(location >= snapRegions[region][0] && location <= snapRegions[region][1]){
+                    setIsSnapping(true);
+                    break;
+                } else {
+                    setIsSnapping(false);
+                }
+            }
+        };
+        theWrapper.addEventListener("scroll", onScroll);
         return () => {
             theWrapper.removeEventListener("scroll", onScroll);
         }
-    }, [wrapper]);
-    
+    }, [snapRegions]);
+
+
 
 
 
@@ -45,7 +48,7 @@ export const Article = ({ title, children }) => {
                 <title>{title}</title>
             </Head>
             <div className="overflow-hidden relative">
-                <div id="wrapper" ref={wrapper} className={"overflow-y-scroll h-screen " + (true ? " snap-y snap-mandatory " : " ")}>
+                <div id="wrapper" ref={wrapper}  className={"overflow-y-scroll h-screen " + (isSnapping ? " snap-y snap-mandatory " : " ")}>
                     <AddStyle className='text-9xl'>{newFrames}</AddStyle>
                 </div>
             </div>
@@ -103,12 +106,25 @@ const ParseFrames = (content) => {
 // This function is does all of the initial processing of the frames.
 const handleFrames = (frames) => {
     const frameProps = frames.map(frame => frame.props);
-    
+
     // Handling the snapping effect of the frames
+    const snapProps = frames.map(frame => frame.props.snap);
+    const snapRegions = [];
+    let snapRegion = [];
+    for(let i=0; i<snapProps.length; i++){
+        if(snapProps[i]==="startSnap"){
+            snapRegion.push(i);
+        } else if(snapProps[i]==="lastSnap"){
+            snapRegion.push(i);
+            snapRegions.push(snapRegion);
+            snapRegion = [];
+        }
+    };
+
     const snapList = getSnapList(frameProps);
     const newFrames = handleSnapList(frames, snapList);
 
-    return {newFrames: newFrames, snapList: snapList};
+    return { newFrames: newFrames, snapRegions: snapRegions };
 };
 
 // SNAP PROPERTY
@@ -119,7 +135,7 @@ const getSnapList = (frameProps) => {
 
     let isSnapping = false;
     const snapList = [];
-    for (let i = 0; i < snapValues.length ; i++) {
+    for (let i = 0; i < snapValues.length; i++) {
         if (snapValues[i] === "startSnap") {
             isSnapping = true;
             snapList.push(true);
@@ -145,11 +161,11 @@ const getSnapList = (frameProps) => {
 const handleSnapList = (frames, snapList) => {
     const newFrames = frames.map((frame, index) => {
         if (snapList[index]) {
-                return <AddStyle className='snap-start' key={index}>{frame}</AddStyle>;
-            } else {
-                return frame
-            }
+            return <AddStyle className='snap-start' key={index}>{frame}</AddStyle>;
+        } else {
+            return frame
         }
+    }
     );
     return newFrames;
 };

@@ -23,6 +23,25 @@ export default function Home() {
                 <Frame className="bg-politicalRed h-screen flex items-center justify-center">
                     <h1 className='font-bold'>Sixth issue</h1>
                 </Frame>
+
+                <Frame snap="startSnap" className="bg-politicalRed h-screen flex items-center justify-center">
+                    <h1 className='font-bold'>Seventh issue</h1>
+                </Frame>
+                <Frame className="bg-politicalTeal h-screen flex items-center justify-center ">
+                    <h1 className='font-bold'>Eigth issue</h1>
+                </Frame>
+                <Frame className="bg-politicalPurple h-screen flex items-center justify-center">
+                    <h1 className='font-bold'>Third issue</h1>
+                </Frame>
+                <Frame snap="lastSnap" className="bg-politicalYellow  h-screen flex items-center justify-center">
+                    <h1 className='font-bold'>Fourth issue</h1>
+                </Frame>
+                <Frame className="bg-politicalRed h-screen flex items-center justify-center">
+                    <h1 className='font-bold'>Fifth issue</h1>
+                </Frame>
+                <Frame className="bg-politicalRed h-screen flex items-center justify-center">
+                    <h1 className='font-bold'>Sixth issue</h1>
+                </Frame>
             </Article>
         </>
     )
